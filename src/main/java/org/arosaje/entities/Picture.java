@@ -15,6 +15,14 @@ public class Picture {
     private LocalDateTime date;
     @Column(name = "URL")
     private String url;
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "plante_id")
+    private Plant plant;
+
+
 
     public Picture() {
     }

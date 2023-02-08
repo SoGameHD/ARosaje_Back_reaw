@@ -25,6 +25,8 @@ public class Plant {
     private User guardian_user;
     @OneToMany(mappedBy = "plant")
     private Set<Advice> advices;
+    @OneToMany(mappedBy = "plant")
+    private Set<Picture> pictures;
 
     public Plant() {
     }
