@@ -15,6 +15,9 @@ public class Plant {
     private String create_date;
     @Column(name = "DATE_DERNIER_ENTRETIEN")
     private String last_update_date;
+    @ManyToOne
+    @JoinColumn(name="PROPRIO_ID")
+    private User user;
 
     public Plant() {
     }
