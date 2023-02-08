@@ -14,6 +14,8 @@ public class User {
     private String email;
     @Column(name = "MOT_DE_PASSE")
     private String pwd;
+    @Column(name= "TYPE")
+    private String type;
     @Embedded
     private UserInfo userInfo;
 

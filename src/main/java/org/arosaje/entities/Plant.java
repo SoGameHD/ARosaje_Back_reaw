@@ -2,6 +2,8 @@ package org.arosaje.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "PLANTES")
 public class Plant {
@@ -21,6 +23,8 @@ public class Plant {
     @ManyToOne
     @JoinColumn(name="GUARDIEN_ID")
     private User guardian_user;
+    @OneToMany(mappedBy = "plant")
+    private Set<Advice> advices;
 
     public Plant() {
     }

@@ -18,4 +18,7 @@ public class UserInfo {
 
     @OneToMany(mappedBy = "guardian_user")
     private Set<Plant> guardianed_plants;
+
+    @OneToMany(mappedBy = "botanist")
+    private Set<Advice> advices;
 }

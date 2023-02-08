@@ -16,6 +16,13 @@ public class Advice {
 
     @Column(name = "DATE")
     private LocalDateTime date;
+    @ManyToOne
+    @JoinColumn(name = "PLANTE_ID")
+    private Plant plant;
+    @ManyToOne
+    @JoinColumn(name = "BOTANISTE_ID")
+    private User botanist;
+
 
     public Advice() {
     }
