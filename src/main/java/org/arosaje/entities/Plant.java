@@ -17,7 +17,10 @@ public class Plant {
     private String last_update_date;
     @ManyToOne
     @JoinColumn(name="PROPRIO_ID")
-    private User user;
+    private User owner_user;
+    @ManyToOne
+    @JoinColumn(name="GUARDIEN_ID")
+    private User guardian_user;
 
     public Plant() {
     }

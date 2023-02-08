@@ -13,6 +13,9 @@ public class UserInfo {
     @Column(name = "NOM")
     private String last_name;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Plant> plants;
+    @OneToMany(mappedBy = "owner_user")
+    private Set<Plant> owned_plants;
+
+    @OneToMany(mappedBy = "guardian_user")
+    private Set<Plant> guardianed_plants;
 }
