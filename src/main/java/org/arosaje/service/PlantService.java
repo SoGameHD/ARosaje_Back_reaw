@@ -10,24 +10,24 @@ import java.util.Optional;
 @Service
 public class PlantService {
     @Autowired
-    PlantRepository dao;
+    PlantRepository plantRepository;
 
     public Iterable<Plant> getPlants() {
-        return dao.findAll();
+        return plantRepository.findAll();
     }
 
     public Optional<Plant> getPlantById(Integer id) {
-        return dao.findById(id);
+        return plantRepository.findById(id);
     }
 
     public void createPlant(Plant plant) {
-        dao.save(plant);
+        plantRepository.save(plant);
     }
 
     public void savePlant(Plant plant) {
-        dao.save(plant);
+        plantRepository.save(plant);
     }
     public void deletePlantById(Integer id) {
-        dao.deleteById(id);
+        plantRepository.deleteById(id);
     }
 }

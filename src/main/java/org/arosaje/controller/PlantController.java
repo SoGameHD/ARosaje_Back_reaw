@@ -23,7 +23,6 @@ public class PlantController {
 
     @RequestMapping(method = RequestMethod.GET, value ="/getPlantById")
     public Optional<Plant> getPlantById(@RequestParam(name = "id") Integer id) {
-        System.out.println(plantService.getPlantById(id));
         return plantService.getPlantById(id);
     }
 
