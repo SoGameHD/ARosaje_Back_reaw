@@ -23,9 +23,9 @@ public class Plant {
     @ManyToOne
     @JoinColumn(name="GUARDIEN_ID")
     private User guardian_user;
-    @OneToMany(mappedBy = "plant")
+    @OneToMany(mappedBy = "plant", cascade = CascadeType.REMOVE)
     private Set<Advice> advices;
-    @OneToMany(mappedBy = "plant")
+    @OneToMany(mappedBy = "plant", cascade = CascadeType.REMOVE)
     private Set<Picture> pictures;
 
     public Plant() {
@@ -63,6 +63,38 @@ public class Plant {
         this.last_update_date = last_update_date;
     }
 
+    public User getOwner_user() {
+        return owner_user;
+    }
+
+    public void setOwner_user(User owner_user) {
+        this.owner_user = owner_user;
+    }
+
+    public User getGuardian_user() {
+        return guardian_user;
+    }
+
+    public void setGuardian_user(User guardian_user) {
+        this.guardian_user = guardian_user;
+    }
+
+    public Set<Advice> getAdvices() {
+        return advices;
+    }
+
+    public void setAdvices(Set<Advice> advices) {
+        this.advices = advices;
+    }
+
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
     @Override
     public String toString() {
         return "Plant{" +
@@ -70,6 +102,10 @@ public class Plant {
                 ", title='" + title + '\'' +
                 ", create_date='" + create_date + '\'' +
                 ", last_update_date='" + last_update_date + '\'' +
+                ", owner_user=" + owner_user +
+                ", guardian_user=" + guardian_user +
+                ", advices=" + advices +
+                ", pictures=" + pictures +
                 '}';
     }
 }
