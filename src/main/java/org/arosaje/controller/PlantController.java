@@ -3,10 +3,7 @@ package org.arosaje.controller;
 import org.arosaje.entities.Plant;
 import org.arosaje.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -27,12 +24,12 @@ public class PlantController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/createPlant")
-    public void createPlant(@RequestParam(name = "plant") Plant plant) {
+    public void createPlant(@RequestBody Plant plant) {
         plantService.createPlant(plant);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/updatePlant")
-    public void updatePlant(@RequestParam(name = "plant") Plant plant) {
+    public void updatePlant(@RequestBody Plant plant) {
         plantService.savePlant(plant);
     }
     @RequestMapping(method = RequestMethod.DELETE, value ="/deletePlantById")

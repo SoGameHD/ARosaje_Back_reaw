@@ -3,10 +3,7 @@ package org.arosaje.controller;
 import org.arosaje.entities.Advice;
 import org.arosaje.service.AdviceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -21,12 +18,12 @@ public class AdviceController {
         return adviceService.getAdviceById(id);
     }
     @RequestMapping(method = RequestMethod.POST, value = "/createAdvice")
-    public void createAdvice(@RequestParam(name = "advice") Advice advice) {
+    public void createAdvice(@RequestBody Advice advice) {
         adviceService.createAdvice(advice);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/updateAdvice")
-    public void updateAdvice(@RequestParam(name = "advice") Advice advice) {
+    public void updateAdvice(@RequestBody Advice advice) {
         adviceService.saveAdvice(advice);
     }
     @RequestMapping(method = RequestMethod.DELETE, value ="/deleteAdviceById")
