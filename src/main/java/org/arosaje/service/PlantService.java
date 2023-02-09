@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public class PlantService {
     @Autowired
-    PlantRepository plantRepository;
+    private PlantRepository plantRepository;
 
     public Iterable<Plant> getPlants() {
         return plantRepository.findAll();
