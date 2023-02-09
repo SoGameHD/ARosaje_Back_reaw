@@ -16,6 +16,23 @@ public class User {
     private String pwd;
     @Column(name= "TYPE")
     private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
     @Embedded
     private UserInfo userInfo;
 
@@ -52,7 +69,6 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
-                ", pwd='" + pwd + '\'' +
                 '}';
     }
 }
