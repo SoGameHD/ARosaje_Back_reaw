@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "HISTORIQUE_GARDIENNAGE")
-public class GuardianLog {
+public class PlantGuardian {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,7 +21,7 @@ public class GuardianLog {
     @Column(name = "DATE_FIN")
     private LocalDate end_date;
 
-    public GuardianLog() {
+    public PlantGuardian() {
     }
 
     public Integer getId() {
@@ -58,7 +58,7 @@ public class GuardianLog {
 
     @Override
     public String toString() {
-        return "GuardianLog{" +
+        return "PlantGuardian{" +
                 "id=" + id +
                 ", user=" + user +
                 ", plant=" + plant +

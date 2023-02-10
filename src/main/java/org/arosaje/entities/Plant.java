@@ -17,6 +17,8 @@ public class Plant {
     private String create_date;
     @Column(name = "DATE_DERNIER_ENTRETIEN")
     private String last_update_date;
+    @Column(name = "GARDER")
+    private Boolean guard;
     @ManyToOne
     @JoinColumn(name="PROPRIO_ID")
     private User owner_user;
@@ -27,6 +29,10 @@ public class Plant {
     private Set<Advice> advices;
     @OneToMany(mappedBy = "plant", cascade = CascadeType.REMOVE)
     private Set<Picture> pictures;
+
+    {
+        guard = false;
+    }
 
     public Plant() {
     }
@@ -61,6 +67,14 @@ public class Plant {
 
     public void setLast_update_date(String last_update_date) {
         this.last_update_date = last_update_date;
+    }
+
+    public Boolean getGuard() {
+        return guard;
+    }
+
+    public void setGuard(Boolean guard) {
+        this.guard = guard;
     }
 
     public User getOwner_user() {
