@@ -2,6 +2,8 @@ package org.arosaje.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -14,9 +16,13 @@ public class Plant {
     @Column(name = "TITRE")
     private String title;
     @Column(name = "DATE_AJOUT")
-    private String create_date;
+    private LocalDateTime create_date;
     @Column(name = "DATE_DERNIER_ENTRETIEN")
-    private String last_update_date;
+    private LocalDateTime last_update_date;
+    @Column(name="DATE_DEBUT")
+    private LocalDate start_date;
+    @Column(name="DATE_FIN")
+    private LocalDate end_date;
     @Column(name = "GARDER")
     private Boolean guard;
     @ManyToOne
@@ -32,6 +38,7 @@ public class Plant {
 
     {
         guard = false;
+        create_date = LocalDateTime.now();
     }
 
     public Plant() {
@@ -53,20 +60,36 @@ public class Plant {
         this.title = title;
     }
 
-    public String getCreate_date() {
+    public LocalDateTime getCreate_date() {
         return create_date;
     }
 
-    public void setCreate_date(String create_date) {
+    public void setCreate_date(LocalDateTime create_date) {
         this.create_date = create_date;
     }
 
-    public String getLast_update_date() {
+    public LocalDateTime getLast_update_date() {
         return last_update_date;
     }
 
-    public void setLast_update_date(String last_update_date) {
+    public void setLast_update_date(LocalDateTime last_update_date) {
         this.last_update_date = last_update_date;
+    }
+
+    public LocalDate getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(LocalDate start_date) {
+        this.start_date = start_date;
+    }
+
+    public LocalDate getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(LocalDate end_date) {
+        this.end_date = end_date;
     }
 
     public Boolean getGuard() {
@@ -114,14 +137,15 @@ public class Plant {
         return "Plant{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", create_date='" + create_date + '\'' +
-                ", last_update_date='" + last_update_date + '\'' +
+                ", create_date=" + create_date +
+                ", last_update_date=" + last_update_date +
+                ", start_date=" + start_date +
+                ", end_date=" + end_date +
+                ", guard=" + guard +
                 ", owner_user=" + owner_user +
                 ", guardian_user=" + guardian_user +
                 ", advices=" + advices +
                 ", pictures=" + pictures +
                 '}';
     }
-
-
 }
