@@ -11,8 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PicturesService {
@@ -32,6 +31,26 @@ public class PicturesService {
 
         pictureRepository.save(picture);
 
+    }
+
+    public Picture getPicture(Integer plantId, Integer pictureId){
+        Optional<Plant> plant  = plantRepository.findById( plantId );
+        Plant actualPlant = plant.orElse(null);
+        List<Picture> pictures  = pictureRepository.getAllByPlantId(plantId);
+        //Optional<Picture> picture = pictureRepository.findById(actualPlant.);
+        //Picture actuelPicture = pictures.orElse(null);
+        for(Picture picture : pictures){
+            if(picture.getId() == pictureId){
+                return picture;
+            }
+        }
+
+
+        return null;
+    }
+
+    public void deletePicture(Integer pictureId) {
+        pictureRepository.deleteById(pictureId);
     }
 
 
