@@ -32,7 +32,6 @@ public class PictureController {
     @GetMapping("/plants/{plantId}/pictures/{pictureId}")
     @ResponseBody
     public ResponseEntity<byte[]> getPicture(@PathVariable Integer plantId , @PathVariable Integer pictureId){
-       
 
         // Utilisez un service pour extraire l'image de la base de données en fonction de l'ID fourni
         byte[] pictureBytes = picturesService.getPicture(plantId,pictureId).getContent();
@@ -43,15 +42,5 @@ public class PictureController {
         headers.setContentLength(pictureBytes.length);
 
         return new ResponseEntity<byte[]>(pictureBytes, headers, HttpStatus.OK);
-
-
     }
-
-   @PutMapping("/pictures/{pictureId}")
-    public void deletePicture(@PathVariable Integer pictureId){
-        picturesService.deletePicture(pictureId);
-
-   }
-
-
 }
