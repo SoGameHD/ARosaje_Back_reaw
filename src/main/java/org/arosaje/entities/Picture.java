@@ -10,18 +10,15 @@ import java.time.LocalDateTime;
 public class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true)
     private Integer id;
-
-    @Column( name = "nom" )
+    @Column( name = "nom", length = 255)
     private String fileName;
     @Column(name = "DATE")
     private LocalDateTime date;
-
-    @Column( name = "type" )
+    @Column( name = "type", length = 255)
     private String mimeType;
-
-    @Column( name = "taille" )
+    @Column( name = "taille")
     private long size;
     @JsonIgnore
     @Lob

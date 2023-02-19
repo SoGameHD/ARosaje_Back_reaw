@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 public class Advice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true)
     private Integer id;
-    @Column(name = "CONTENU")
+    @Column(name = "CONTENU", length = 5000)
     private String content;
 
     @Column(name = "DATE")

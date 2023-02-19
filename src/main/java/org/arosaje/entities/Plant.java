@@ -11,9 +11,9 @@ import java.util.Set;
 public class Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true)
     private Integer id;
-    @Column(name = "TITRE")
+    @Column(name = "TITRE", length = 100)
     private String title;
     @Column(name = "DATE_AJOUT")
     private LocalDateTime create_date;

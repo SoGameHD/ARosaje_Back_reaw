@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public class PlantGuardian {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", unique = true)
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "UTILISATEUR_ID")

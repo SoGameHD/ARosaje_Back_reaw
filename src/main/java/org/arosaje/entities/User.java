@@ -8,34 +8,16 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true)
     private Integer id;
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", unique = true, length = 255)
     private String email;
-    @Column(name = "MOT_DE_PASSE")
+    @Column(name = "MOT_DE_PASSE", length = 255)
     private String pwd;
-    @Column(name= "TYPE")
+    @Column(name= "TYPE", length = 25)
     private String type;
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
-    }
-
     @Embedded
     private UserInfo userInfo;
-
 
     public User() {
     }
@@ -62,6 +44,22 @@ public class User {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     @Override
