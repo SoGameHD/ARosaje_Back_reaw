@@ -19,6 +19,13 @@ public class UserInfo {
     @OneToMany(mappedBy = "botanist")
     private Set<Advice> advices;
 
+    public UserInfo() {
+    }
+    public UserInfo(String first_name, String last_name) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
+
     public String getFirst_name() {
         return first_name;
     }

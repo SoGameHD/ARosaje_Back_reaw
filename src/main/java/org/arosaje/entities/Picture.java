@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 @Entity
 @Table(name = "PHOTO")
@@ -33,6 +34,21 @@ public class Picture {
     private Plant plant;
 
     public Picture() {
+    }
+
+    public Picture(String fileName, LocalDateTime date, String mimeType, long size) {
+        this.fileName = fileName;
+        this.date = date;
+        this.mimeType = mimeType;
+        this.size = size;
+    }
+
+    public Picture(Integer id, String fileName, LocalDateTime date, String mimeType, long size) {
+        this.id = id;
+        this.fileName = fileName;
+        this.date = date;
+        this.mimeType = mimeType;
+        this.size = size;
     }
 
     public Picture(String fileName, LocalDateTime now, String contentType, long size, byte[] bytes, Plant  plant) {
@@ -117,12 +133,18 @@ public class Picture {
                 ", date=" + date +
                 ", mimeType='" + mimeType + '\'' +
                 ", size=" + size +
-                ", content=" + Arrays.toString(content) +
                 '}';
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Picture picture = (Picture) o;
+        return Objects.equals(id, picture.id) &&
+                Objects.equals(fileName, picture.fileName) &&
+                Objects.equals(date.format(DateTimeFormatter.ISO_DATE), picture.date.format(DateTimeFormatter.ISO_DATE)) &&
+                Objects.equals(mimeType, picture.mimeType) &&
+                Objects.equals(size, picture.size);
     }
 }

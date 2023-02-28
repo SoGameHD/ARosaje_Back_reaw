@@ -1,7 +1,8 @@
 package org.arosaje.repository;
+
+import org.arosaje.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import org.arosaje.entities.User;
 
 
 @Repository

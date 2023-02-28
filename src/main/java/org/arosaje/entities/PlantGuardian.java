@@ -3,6 +3,7 @@ package org.arosaje.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "HISTORIQUE_GARDIENNAGE")
@@ -23,6 +24,21 @@ public class PlantGuardian {
     private LocalDate end_date;
 
     public PlantGuardian() {
+    }
+
+    public PlantGuardian(User user, Plant plant, LocalDate start_date, LocalDate end_date) {
+        this.user = user;
+        this.plant = plant;
+        this.start_date = start_date;
+        this.end_date = end_date;
+    }
+
+    public PlantGuardian(Integer id, User user, Plant plant, LocalDate start_date, LocalDate end_date) {
+        this.id = id;
+        this.user = user;
+        this.plant = plant;
+        this.start_date = start_date;
+        this.end_date = end_date;
     }
 
     public Integer getId() {
@@ -66,5 +82,13 @@ public class PlantGuardian {
                 ", start_date=" + start_date +
                 ", end_date=" + end_date +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlantGuardian plantGuardian = (PlantGuardian) o;
+        return Objects.equals(id, plantGuardian.id);
     }
 }

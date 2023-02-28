@@ -3,6 +3,8 @@ package org.arosaje.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 @Entity
 @Table(name = "CONSEILS")
@@ -11,7 +13,7 @@ public class Advice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true)
     private Integer id;
-    @Column(name = "CONTENU", length = 5000)
+    @Column(name = "CONTENU", length = 5000, nullable = false)
     private String content;
 
     @Column(name = "DATE")
@@ -23,8 +25,21 @@ public class Advice {
     @JoinColumn(name = "BOTANISTE_ID")
     private User botanist;
 
+    {
+        date = LocalDateTime.now();
+    }
 
     public Advice() {
+    }
+
+    public Advice(String content) {
+        this.content = content;
+    }
+
+    public Advice(Integer id, String content, LocalDateTime date) {
+        this.id = id;
+        this.content = content;
+        this.date = date;
     }
 
     public Integer getId() {
@@ -58,5 +73,15 @@ public class Advice {
                 ", content='" + content + '\'' +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Advice advice = (Advice) o;
+        return Objects.equals(id, advice.id) &&
+                Objects.equals(content, advice.content) &&
+                Objects.equals(date.format(DateTimeFormatter.ISO_DATE), advice.date.format(DateTimeFormatter.ISO_DATE));
     }
 }

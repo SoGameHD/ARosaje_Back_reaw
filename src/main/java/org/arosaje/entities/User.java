@@ -2,6 +2,8 @@ package org.arosaje.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "UTILISATEURS")
 public class User {
@@ -10,16 +12,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true)
     private Integer id;
-    @Column(name = "EMAIL", unique = true, length = 255)
+    @Column(name = "EMAIL", unique = true, length = 255, nullable = false)
     private String email;
-    @Column(name = "MOT_DE_PASSE", length = 255)
+    @Column(name = "MOT_DE_PASSE", length = 255, nullable = false)
     private String pwd;
-    @Column(name= "TYPE", length = 25)
+    @Column(name= "TYPE", length = 25, nullable = false)
     private String type;
     @Embedded
     private UserInfo userInfo;
 
     public User() {
+    }
+
+    public User(String email, String pwd, String type, UserInfo userInfo) {
+        this.email = email;
+        this.pwd = pwd;
+        this.type = type;
+        this.userInfo = userInfo;
+    }
+
+    public User(Integer id, String email) {
+        this.id = id;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -68,5 +82,14 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(email, user.email);
     }
 }
