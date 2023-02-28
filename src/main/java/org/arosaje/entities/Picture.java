@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "PHOTO")
@@ -12,17 +13,17 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true)
     private Integer id;
-    @Column( name = "nom", length = 255)
+    @Column( name = "nom", length = 255, nullable = false)
     private String fileName;
     @Column(name = "DATE")
     private LocalDateTime date;
-    @Column( name = "type", length = 255)
+    @Column( name = "type", length = 255, nullable = false)
     private String mimeType;
-    @Column( name = "taille")
+    @Column( name = "taille", length = 1000 ,nullable = false)
     private long size;
     @JsonIgnore
     @Lob
-    @Column( name = "contenu", columnDefinition = "BLOB")
+    @Column( name = "contenu", columnDefinition = "LONGBLOB")
     private byte[] content;
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
@@ -30,7 +31,6 @@ public class Picture {
     @ManyToOne
     @JoinColumn(name = "plante_id")
     private Plant plant;
-
 
     public Picture() {
     }
@@ -44,7 +44,6 @@ public class Picture {
         this.plant = plant;
 
     }
-
 
     public Integer getId() {
         return id;
@@ -69,8 +68,6 @@ public class Picture {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
-
-
 
     public String getMimeType() {
         return mimeType;
@@ -110,5 +107,22 @@ public class Picture {
 
     public void setPlant(Plant plant) {
         this.plant = plant;
+    }
+
+    @Override
+    public String toString() {
+        return "Picture{" +
+                "id=" + id +
+                ", fileName='" + fileName + '\'' +
+                ", date=" + date +
+                ", mimeType='" + mimeType + '\'' +
+                ", size=" + size +
+                ", content=" + Arrays.toString(content) +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }
