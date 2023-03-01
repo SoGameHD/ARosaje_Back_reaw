@@ -3,7 +3,6 @@ package org.arosaje.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 @Table(name = "HISTORIQUE_GARDIENNAGE")
@@ -63,6 +62,14 @@ public class PlantGuardian {
 
     public void setEnd_date(LocalDate end_date) {
         this.end_date = end_date;
+    }
+
+    public Plant getPlant() {
+        return plant;
+    }
+
+    public void setPlant(Plant plant) {
+        this.plant = plant;
     }
 
     @Override

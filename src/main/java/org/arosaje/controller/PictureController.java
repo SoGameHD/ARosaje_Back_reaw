@@ -1,9 +1,6 @@
 package org.arosaje.controller;
 
-import org.arosaje.entities.Picture;
 import org.arosaje.service.PicturesService;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,11 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.*;
 
-import static org.springframework.web.servlet.function.RequestPredicates.contentType;
-
+@CrossOrigin(origins = "*")
 @RestController
 public class PictureController {
 
@@ -25,8 +19,8 @@ public class PictureController {
     private PicturesService picturesService;
 
     @PostMapping( "/addPicture" )
-    public void addPictures(@RequestParam(name = "id") Integer plantId,  @RequestParam(name = "file") MultipartFile file) throws IOException {
-        picturesService.storePlantPictures(plantId,file);
+    public void addPictures(@RequestParam Integer plantId, @RequestParam Integer userId,  @RequestParam(name = "file") MultipartFile file) throws IOException {
+        picturesService.storePlantPictures(plantId, userId, file);
     }
 
     @GetMapping("/plants/{plantId}/pictures/{pictureId}")

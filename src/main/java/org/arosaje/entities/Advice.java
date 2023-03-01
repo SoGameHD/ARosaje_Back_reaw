@@ -3,8 +3,6 @@ package org.arosaje.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 @Entity
 @Table(name = "CONSEILS")
@@ -66,6 +64,14 @@ public class Advice {
 
     public void setPlant(Plant plant) {
         this.plant = plant;
+    }
+
+    public User getBotanist() {
+        return botanist;
+    }
+
+    public void setBotanist(User botanist) {
+        this.botanist = botanist;
     }
 
     @Override

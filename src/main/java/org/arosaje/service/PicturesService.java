@@ -2,8 +2,10 @@ package org.arosaje.service;
 
 import org.arosaje.entities.Picture;
 import org.arosaje.entities.Plant;
+import org.arosaje.entities.User;
 import org.arosaje.repository.PictureRepository;
 import org.arosaje.repository.PlantRepository;
+import org.arosaje.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -23,14 +25,18 @@ public class PicturesService {
     @Autowired
     PictureRepository pictureRepository;
 
+    @Autowired
+    UserRepository userRepository;
 
-    public void storePlantPictures(Integer plantId, MultipartFile file ) throws IOException {
+
+    public void storePlantPictures(Integer plantId, Integer userId, MultipartFile file ) throws IOException {
          Picture picture= null;
         Optional<Plant> plant  = plantRepository.findById( plantId );
+        User user = userRepository.findById(userId).orElse(null);
         Plant actualPlant = plant.orElse(null);
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         picture = new Picture(fileName, LocalDateTime.now(),file.getContentType(), file.getSize(), file.getBytes(), actualPlant);
-
+        picture.setUser(user);
         pictureRepository.save(picture);
 
     }
