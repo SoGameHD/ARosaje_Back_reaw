@@ -1,8 +1,12 @@
-package org.arosaje.entities;
+package org.arosaje.entities.Advice;
 
 import jakarta.persistence.*;
+import org.arosaje.entities.Plant;
+import org.arosaje.entities.User;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 @Entity
 @Table(name = "CONSEILS")
