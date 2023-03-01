@@ -1,5 +1,6 @@
 package org.arosaje.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -14,6 +15,7 @@ public class User {
     private Integer id;
     @Column(name = "EMAIL", unique = true, length = 255, nullable = false)
     private String email;
+    @JsonIgnore
     @Column(name = "MOT_DE_PASSE", length = 255, nullable = false)
     private String pwd;
     @Column(name= "TYPE", length = 25, nullable = false)
