@@ -45,24 +45,8 @@ public class Plant {
     public Plant() {
     }
 
-    public Plant(String title) {
-        this.title = title;
-    }
-
     public Plant(String title, LocalDateTime last_update_date, LocalDate start_date, LocalDate end_date, Boolean guard, User owner_user, User guardian_user) {
         this.title = title;
-        this.last_update_date = last_update_date;
-        this.start_date = start_date;
-        this.end_date = end_date;
-        this.guard = guard;
-        this.owner_user = owner_user;
-        this.guardian_user = guardian_user;
-    }
-
-    public Plant(Integer id, String title, LocalDateTime create_date, LocalDateTime last_update_date, LocalDate start_date, LocalDate end_date, Boolean guard, User owner_user, User guardian_user) {
-        this.id = id;
-        this.title = title;
-        this.create_date = create_date;
         this.last_update_date = last_update_date;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -171,15 +155,9 @@ public class Plant {
                 ", guard=" + guard +
                 ", owner_user=" + owner_user +
                 ", guardian_user=" + guardian_user +
+                ", advices=" + advices +
+                ", pictures=" + pictures +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Plant plant = (Plant) o;
-        return Objects.equals(id, plant.id) &&
-                Objects.equals(title, plant.title);
-    }
 }

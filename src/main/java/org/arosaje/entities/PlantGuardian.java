@@ -33,14 +33,6 @@ public class PlantGuardian {
         this.end_date = end_date;
     }
 
-    public PlantGuardian(Integer id, User user, Plant plant, LocalDate start_date, LocalDate end_date) {
-        this.id = id;
-        this.user = user;
-        this.plant = plant;
-        this.start_date = start_date;
-        this.end_date = end_date;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -84,11 +76,4 @@ public class PlantGuardian {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PlantGuardian plantGuardian = (PlantGuardian) o;
-        return Objects.equals(id, plantGuardian.id);
-    }
 }

@@ -43,14 +43,6 @@ public class Picture {
         this.size = size;
     }
 
-    public Picture(Integer id, String fileName, LocalDateTime date, String mimeType, long size) {
-        this.id = id;
-        this.fileName = fileName;
-        this.date = date;
-        this.mimeType = mimeType;
-        this.size = size;
-    }
-
     public Picture(String fileName, LocalDateTime now, String contentType, long size, byte[] bytes, Plant  plant) {
         this.fileName = fileName;
         this.date = now;
@@ -136,15 +128,4 @@ public class Picture {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Picture picture = (Picture) o;
-        return Objects.equals(id, picture.id) &&
-                Objects.equals(fileName, picture.fileName) &&
-                Objects.equals(date.format(DateTimeFormatter.ISO_DATE), picture.date.format(DateTimeFormatter.ISO_DATE)) &&
-                Objects.equals(mimeType, picture.mimeType) &&
-                Objects.equals(size, picture.size);
-    }
 }

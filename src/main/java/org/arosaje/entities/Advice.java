@@ -36,12 +36,6 @@ public class Advice {
         this.content = content;
     }
 
-    public Advice(Integer id, String content, LocalDateTime date) {
-        this.id = id;
-        this.content = content;
-        this.date = date;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -66,22 +60,21 @@ public class Advice {
         this.date = date;
     }
 
+    public Plant getPlant() {
+        return plant;
+    }
+
+    public void setPlant(Plant plant) {
+        this.plant = plant;
+    }
+
     @Override
     public String toString() {
         return "Advice{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", date=" + date +
+                ", plant=" + plant +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Advice advice = (Advice) o;
-        return Objects.equals(id, advice.id) &&
-                Objects.equals(content, advice.content) &&
-                Objects.equals(date.format(DateTimeFormatter.ISO_DATE), advice.date.format(DateTimeFormatter.ISO_DATE));
     }
 }

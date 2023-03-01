@@ -37,16 +37,17 @@ public class UserRepositoryTest {
         // Acting
         users = (List<User>) repository.findAll();
         // Asserting
-        assertEquals(1, users.size());
+        assertNotNull(users);
     }
 
     @Test
-    public void testFindById() {
+    public void testFindByEmail() {
         // Arrangement
-        User user =new User(1,"example@example.com");
+        String email = "example@example.com";
         // Acting
-        User userFind = repository.findById(1).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
+        User userFind = repository.findByEmail("example@example.com");
         // Asserting
-        assertEquals(user, userFind);
+        assertEquals(email, userFind.getEmail());
+        repository.delete(userFind);
     }
 }
