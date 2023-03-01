@@ -1,5 +1,6 @@
-package org.arosaje.entities.Advice;
+package org.arosaje.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.arosaje.entities.Plant;
 import org.arosaje.entities.User;
@@ -21,6 +22,7 @@ public class Advice {
     @Column(name = "DATE")
     private LocalDateTime date;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "PLANTE_ID")
     private Plant plant;
     @ManyToOne

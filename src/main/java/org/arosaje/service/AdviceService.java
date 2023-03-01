@@ -28,4 +28,6 @@ public class AdviceService {
         advice.setBotanist(user);
         adviceRepository.save(advice);
     }
+
+
 }

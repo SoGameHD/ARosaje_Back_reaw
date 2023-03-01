@@ -25,7 +25,7 @@ public class PlantController {
     }
 
     @GetMapping( "/getPlants" )
-    public List<Plant> getPlant() {
+    public List<Plant> getPlants() {
         return plantService.findAll();
     }
 }

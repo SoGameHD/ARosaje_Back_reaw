@@ -30,6 +30,7 @@ public class Picture {
     @JoinColumn(name = "utilisateur_id")
     private User user;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "plante_id")
     private Plant plant;
 
