@@ -24,7 +24,7 @@ public class PlantController {
         plantService.setPlantGuardian(guardId,plantId);
     }
 
-    @GetMapping( "/getPlant" )
+    @GetMapping( "/getPlants" )
     public List<Plant> getPlant() {
         return plantService.findAll();
     }
