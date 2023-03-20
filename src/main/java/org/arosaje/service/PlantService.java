@@ -18,10 +18,11 @@ public class PlantService {
     @Autowired
     UserRepository userRepository;
 
-    public void storePlant(Integer ownerId, Plant plant) {
+    public Integer storePlant(Integer ownerId, Plant plant) {
         User owner = userRepository.findById(ownerId).orElse(null);
         plant.setOwner_user(owner);
-        plantRepository.save(plant);
+        Plant plantCreated = plantRepository.save(plant);
+        return plantCreated.getId();
     }
 
     public void setPlantGuardian(Integer guardId, Integer plantId) {

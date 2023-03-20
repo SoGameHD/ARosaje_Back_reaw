@@ -15,7 +15,6 @@ public class User {
     private Integer id;
     @Column(name = "EMAIL", unique = true, length = 255, nullable = false)
     private String email;
-    @JsonIgnore
     @Column(name = "MOT_DE_PASSE", length = 255, nullable = false)
     private String pwd;
     @Column(name= "ROLE", length = 25, nullable = false)
