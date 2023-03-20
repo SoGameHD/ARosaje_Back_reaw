@@ -18,18 +18,18 @@ public class User {
     @JsonIgnore
     @Column(name = "MOT_DE_PASSE", length = 255, nullable = false)
     private String pwd;
-    @Column(name= "TYPE", length = 25, nullable = false)
-    private String type;
+    @Column(name= "ROLE", length = 25, nullable = false)
+    private String role;
     @Embedded
     private UserInfo userInfo;
 
     public User() {
     }
 
-    public User(String email, String pwd, String type, UserInfo userInfo) {
+    public User(String email, String pwd, String role, UserInfo userInfo) {
         this.email = email;
         this.pwd = pwd;
-        this.type = type;
+        this.role = role;
         this.userInfo = userInfo;
     }
 
@@ -57,12 +57,12 @@ public class User {
         this.pwd = pwd;
     }
 
-    public String getType() {
-        return type;
+    public String getRole() {
+        return role;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public UserInfo getUserInfo() {
