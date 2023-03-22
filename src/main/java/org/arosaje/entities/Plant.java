@@ -15,6 +15,8 @@ public class Plant {
     private Integer id;
     @Column(name = "TITRE", length = 100, nullable = false)
     private String title;
+    @Column(name = "DESCRIPTION", length = 1000, nullable = false)
+    private String description;
     @Column(name = "DATE_AJOUT")
     private LocalDateTime create_date;
     @Column(name = "DATE_DERNIER_ENTRETIEN")
@@ -68,6 +70,14 @@ public class Plant {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getCreate_date() {
@@ -147,6 +157,7 @@ public class Plant {
         return "Plant{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 ", create_date=" + create_date +
                 ", last_update_date=" + last_update_date +
                 ", start_date=" + start_date +
@@ -158,5 +169,4 @@ public class Plant {
                 ", pictures=" + pictures +
                 '}';
     }
-
 }

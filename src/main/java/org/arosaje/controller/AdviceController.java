@@ -1,5 +1,7 @@
 package org.arosaje.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.arosaje.entities.Advice;
 import org.arosaje.repository.AdviceRepository;
 import org.arosaje.service.AdviceService;
@@ -19,8 +21,10 @@ public class AdviceController {
     private AdviceRepository adviceRepository;
 
     @PostMapping( "/addAdvice" )
-    public void addPictures(@RequestParam Integer plantId, @RequestParam Integer botanistId, @RequestBody Advice advice) {
-        adviceService.storePlantAdvice(plantId,botanistId,advice);
+    public void addAdvice(@RequestParam Integer plantId, @RequestParam Integer botanistId, @RequestParam String advice) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Advice tempAdvice = objectMapper.readValue(advice, Advice.class);
+        adviceService.storePlantAdvice(plantId, botanistId, tempAdvice);
     }
 
 
