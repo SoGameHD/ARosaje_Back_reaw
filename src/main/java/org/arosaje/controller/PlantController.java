@@ -1,5 +1,6 @@
 package org.arosaje.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.arosaje.entities.Plant;
 import org.arosaje.repository.PlantRepository;
@@ -40,6 +41,13 @@ public class PlantController {
         plantService.setPlantGuardian(guardId,plantId);
     }
 
+    @PostMapping("/savePlant")
+    public void savePlant(@RequestParam(name="plant") String plant) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());;
+        Plant tempPlant = objectMapper.readValue(plant, Plant.class);
+        plantRepository.save(tempPlant);
+    }
+
     @GetMapping( "/getPlants" )
     public List<Plant> getPlants() {
         return plantService.findAll();
@@ -48,5 +56,10 @@ public class PlantController {
     @GetMapping( "/getPlant/{id}" )
     public Optional<Plant> getPlant(@PathVariable Integer id) {
         return plantRepository.findById(id);
+    }
+
+    @DeleteMapping("/deletePlant/{id}")
+    public void deletePlant(@PathVariable Integer id) {
+        plantRepository.deleteById(id);
     }
 }
