@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -144,8 +146,12 @@ public class Plant {
         this.advices = advices;
     }
 
-    public Set<Picture> getPictures() {
-        return pictures;
+    public List<String> getPictures() {
+        List<String> href = new ArrayList<>();
+        for(Picture pic : pictures) {
+            href.add("localhost:8080/plants/" + getId() + "/pictures/"+pic.getId());
+        }
+        return href;
     }
 
     public void setPictures(Set<Picture> pictures) {

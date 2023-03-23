@@ -50,18 +50,9 @@ public class PicturesService {
                 return picture;
             }
         }
-
-
         return null;
     }
 
-    public Set<Picture> getPictures(Integer plantId) {
-       Plant plant = plantRepository.findById(plantId).orElse(null);
-       if(plant == null) {
-           return new HashSet<>();
-       }
-       return plant.getPictures();
-    }
     public void deletePicture(Integer pictureId) {
         pictureRepository.deleteById(pictureId);
     }

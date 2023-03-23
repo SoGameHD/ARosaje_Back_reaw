@@ -43,14 +43,4 @@ public class PictureController {
         return new ResponseEntity<byte[]>(pictureBytes, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/plants/{plantId}/pictures")
-    @ResponseBody
-    public List<String> getPicturesByPlant(@PathVariable Integer plantId){
-        Set<Picture> pictures = picturesService.getPictures(plantId);
-        List<String> href = new ArrayList<>();
-        for(Picture pic : pictures) {
-            href.add("localhost:8080/plants/" + plantId + "/pictures/"+pic.getId());
-        }
-        return href;
-    }
 }
