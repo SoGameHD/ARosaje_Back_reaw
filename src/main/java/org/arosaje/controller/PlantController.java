@@ -8,6 +8,8 @@ import org.arosaje.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -27,7 +29,7 @@ public class PlantController {
 
     @PostMapping( "/addPlant" )
     public void addPlant(@RequestParam Integer ownerId, @RequestParam(name = "file") MultipartFile file, @RequestParam(name="plant") String plant) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());;
         Plant tempPlant = objectMapper.readValue(plant, Plant.class);
         Integer createdPlantId = plantService.storePlant(ownerId,tempPlant);
         pictureService.storePlantPictures(createdPlantId, ownerId, file);

@@ -13,9 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PicturesService {
@@ -57,6 +55,13 @@ public class PicturesService {
         return null;
     }
 
+    public Set<Picture> getPictures(Integer plantId) {
+       Plant plant = plantRepository.findById(plantId).orElse(null);
+       if(plant == null) {
+           return new HashSet<>();
+       }
+       return plant.getPictures();
+    }
     public void deletePicture(Integer pictureId) {
         pictureRepository.deleteById(pictureId);
     }

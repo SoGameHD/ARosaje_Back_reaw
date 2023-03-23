@@ -1,5 +1,6 @@
 package org.arosaje.repository;
 
+import org.arosaje.entities.Picture;
 import org.arosaje.entities.Plant;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -14,4 +15,5 @@ public interface PlantRepository extends CrudRepository<Plant, Integer> {
 
     @RestResource
     List<Plant> getAllByGuardIsFalse();
+
 }
