@@ -7,10 +7,15 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.Optional;
+
 @CrossOrigin(origins = "*")
 @Repository
 public interface UserRepository extends CrudRepository<User,Integer>{
 
     @RestResource
-    User findByEmail(@Param("email") String email);
+    Optional<User> findByEmail(String email);
+
+
+
 }

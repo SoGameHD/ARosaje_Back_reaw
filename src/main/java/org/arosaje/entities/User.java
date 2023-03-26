@@ -1,13 +1,22 @@
 package org.arosaje.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Objects;
+import java.util.Collection;
+import java.util.List;
 
+@Data
+@Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "UTILISATEURS")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +30,8 @@ public class User {
     private String role;
     @Embedded
     private UserInfo userInfo;
+    @Enumerated(EnumType.STRING)
+    private Roles roles;
 
     public User() {
     }
@@ -80,4 +91,41 @@ public class User {
                 '}';
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(roles.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return pwd;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public void orElseThrow() {
+    }
 }

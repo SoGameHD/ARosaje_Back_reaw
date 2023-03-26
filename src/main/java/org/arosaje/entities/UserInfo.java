@@ -3,8 +3,12 @@ package org.arosaje.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.Set;
+
 
 @Embeddable
 public class UserInfo {
