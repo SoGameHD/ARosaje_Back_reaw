@@ -2,12 +2,9 @@ package org.arosaje.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.arosaje.entities.Plant;
-import org.arosaje.entities.User;
+import org.arosaje.entities.user.User;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 @Entity
 @Table(name = "CONSEILS")

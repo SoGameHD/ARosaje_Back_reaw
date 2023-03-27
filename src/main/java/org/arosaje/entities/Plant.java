@@ -1,6 +1,7 @@
 package org.arosaje.entities;
 
 import jakarta.persistence.*;
+import org.arosaje.entities.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
