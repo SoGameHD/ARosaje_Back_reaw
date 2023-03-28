@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@CrossOrigin(origins = "*")
 @RestController
 public class PictureController {
 
