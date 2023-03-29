@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
-@CrossOrigin(origins = "*")
 @RestController
 public class PlantGuardianController {
 

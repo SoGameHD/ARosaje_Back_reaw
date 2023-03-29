@@ -2,7 +2,7 @@ package org.arosaje.service;
 
 import org.arosaje.entities.Advice;
 import org.arosaje.entities.Plant;
-import org.arosaje.entities.User;
+import org.arosaje.entities.user.User;
 import org.arosaje.repository.AdviceRepository;
 import org.arosaje.repository.PlantRepository;
 import org.arosaje.repository.UserRepository;
