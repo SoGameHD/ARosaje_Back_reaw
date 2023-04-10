@@ -29,7 +29,7 @@ public class PlantController {
     private PicturesService pictureService;
 
     @PostMapping( "/addPlant" )
-    public void addPlant(@RequestParam Integer ownerId, @RequestParam(name = "file") MultipartFile file, @RequestParam(name="plant") String plant) throws IOException {
+    public void addPlant(@RequestParam(name="ownerId") Integer ownerId, @RequestParam(name = "file") MultipartFile file, @RequestParam(name="plant") String plant) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());;
         Plant tempPlant = objectMapper.readValue(plant, Plant.class);
         Integer createdPlantId = plantService.storePlant(ownerId,tempPlant);
