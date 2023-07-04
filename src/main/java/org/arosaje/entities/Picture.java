@@ -23,7 +23,7 @@ public class Picture {
     private long size;
     @JsonIgnore
     @Lob
-    @Column( name = "contenu", columnDefinition = "LONGBLOB")
+    @Column( name = "contenu", columnDefinition = "bytea")
     private byte[] content;
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
