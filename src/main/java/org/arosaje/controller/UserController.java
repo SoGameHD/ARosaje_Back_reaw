@@ -13,7 +13,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping( "/getUser" )
+    @GetMapping( "/user" )
     public User getUserByEmail(@RequestParam(name="email") String email) {
         return userRepository.findByEmail(email).orElseThrow();
     }

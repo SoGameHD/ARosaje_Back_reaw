@@ -2,6 +2,7 @@ package org.arosaje.controller;
 
 import org.arosaje.entities.Picture;
 import org.arosaje.entities.Plant;
+import org.arosaje.repository.PictureRepository;
 import org.arosaje.service.PicturesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -22,7 +24,7 @@ public class PictureController {
     @Autowired
     private PicturesService picturesService;
 
-    @PostMapping( "/addPicture" )
+    @PostMapping( "/picture" )
     public void addPictures(@RequestParam Integer plantId, @RequestParam Integer userId,  @RequestParam(name = "file") MultipartFile file) throws IOException {
         picturesService.storePlantPictures(plantId, userId, file);
     }

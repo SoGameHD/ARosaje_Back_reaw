@@ -19,7 +19,7 @@ public class AdviceController {
     @Autowired
     private AdviceRepository adviceRepository;
 
-    @PostMapping( "/addAdvice" )
+    @PostMapping( "/advice" )
     public void addAdvice(@RequestParam Integer plantId, @RequestParam Integer botanistId, @RequestParam String advice) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         Advice tempAdvice = objectMapper.readValue(advice, Advice.class);

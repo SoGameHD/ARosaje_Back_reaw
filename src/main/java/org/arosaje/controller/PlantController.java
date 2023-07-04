@@ -28,7 +28,7 @@ public class PlantController {
     @Autowired
     private PicturesService pictureService;
 
-    @PostMapping( "/addPlant" )
+    @PostMapping( "/plant" )
     public void addPlant(@RequestParam(name="ownerId") Integer ownerId, @RequestParam(name = "file") MultipartFile file, @RequestParam(name="plant") String plant) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());;
         Plant tempPlant = objectMapper.readValue(plant, Plant.class);
@@ -36,19 +36,19 @@ public class PlantController {
         pictureService.storePlantPictures(createdPlantId, ownerId, file);
     }
 
-    @PostMapping( "/addPlantGuardian" )
+    @PostMapping( "/plantGuardian" )
     public void addPlantGuardian(@RequestParam Integer guardId, @RequestParam Integer plantId) {
         plantService.setPlantGuardian(guardId,plantId);
     }
 
-    @PostMapping("/savePlant")
+    @PatchMapping("/plant")
     public void savePlant(@RequestParam(name="plant") String plant) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());;
         Plant tempPlant = objectMapper.readValue(plant, Plant.class);
         plantRepository.save(tempPlant);
     }
 
-    @GetMapping( "/getPlants" )
+    @GetMapping( "/plants" )
     public List<Plant> getPlants() {
         return plantService.findAll();
     }
@@ -66,12 +66,12 @@ public class PlantController {
         return newPlants;
     }
 
-    @GetMapping( "/getPlant/{id}" )
+    @GetMapping( "/plant/{id}" )
     public Optional<Plant> getPlant(@PathVariable Integer id) {
         return plantRepository.findById(id);
     }
 
-    @DeleteMapping("/deletePlant/{id}")
+    @DeleteMapping("/plant/{id}")
     public void deletePlant(@PathVariable Integer id) {
         plantRepository.deleteById(id);
     }

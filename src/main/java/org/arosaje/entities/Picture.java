@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.arosaje.entities.user.User;
 
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 @Entity
 @Table(name = "PHOTO")
@@ -22,8 +23,7 @@ public class Picture {
     @Column( name = "taille", length = 1000 ,nullable = false)
     private long size;
     @JsonIgnore
-    @Lob
-    @Column( name = "contenu", columnDefinition = "bytea")
+    @Column(name = "contenu", columnDefinition = "bytea")
     private byte[] content;
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
@@ -50,7 +50,6 @@ public class Picture {
         this.mimeType = contentType;
         this.content = bytes;
         this.plant = plant;
-
     }
 
     public Integer getId() {
@@ -122,6 +121,7 @@ public class Picture {
         return "Picture{" +
                 "id=" + id +
                 ", fileName='" + fileName + '\'' +
+                ", content='" + content + '\'' +
                 ", date=" + date +
                 ", mimeType='" + mimeType + '\'' +
                 ", size=" + size +

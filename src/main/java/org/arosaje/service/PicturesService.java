@@ -28,7 +28,7 @@ public class PicturesService {
 
 
     public void storePlantPictures(Integer plantId, Integer userId, MultipartFile file ) throws IOException {
-         Picture picture= null;
+        Picture picture= null;
         Optional<Plant> plant  = plantRepository.findById( plantId );
         User user = userRepository.findById(userId).orElse(null);
         Plant actualPlant = plant.orElse(null);
@@ -36,7 +36,6 @@ public class PicturesService {
         picture = new Picture(fileName, LocalDateTime.now(),file.getContentType(), file.getSize(), file.getBytes(), actualPlant);
         picture.setUser(user);
         pictureRepository.save(picture);
-
     }
 
     public Picture getPicture(Integer plantId, Integer pictureId){
