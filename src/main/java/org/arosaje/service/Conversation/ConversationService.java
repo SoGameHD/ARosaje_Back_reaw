@@ -46,12 +46,47 @@ public class ConversationService {
     }
 
     public List<Conversation> getConversationByUserId(Integer user_id) {
+        Boolean userFind = false;
         User user = userRepository.findById(user_id).orElse(null);
-        return conversationRepository.findAllByUser(user);
+        List<Conversation> conversations = conversationRepository.findAllByUser(user);
+        for(Conversation conversation : conversations) {
+            for(User currentUser : conversation.getUser()) {
+                if(currentUser.getId() == user.getId()) {
+                    userFind = true;
+                } else {
+                    String firstnameFirstChar = currentUser.getFirstname().substring(0, 1).toUpperCase();
+                    String firstnameRestOfString = currentUser.getFirstname().substring(1).toLowerCase();
+                    conversation.setName(firstnameFirstChar + firstnameRestOfString + " " + currentUser.getLastname().toUpperCase());
+                }
+            }
+        }
+        if(userFind == false) {
+            return null;
+        }
+        return conversations;
     }
 
     public List<message> getMessageByConversationId(Integer conv_id) {
         Conversation conversation = conversationRepository.findById(conv_id).orElse(null);
         return messageRepository.findAllByConversation(conversation);
+    }
+
+    public Conversation getConversationByConvId(Integer id, Integer user_id) {
+        Boolean userFind = false;
+        User user = userRepository.findById(user_id).orElse(null);
+        Conversation conversation = conversationRepository.findById(id).orElse(null);
+        for(User currentUser : conversation.getUser()) {
+            if(currentUser.getId() == user.getId()) {
+                userFind = true;
+            } else {
+                String firstnameFirstChar = currentUser.getFirstname().substring(0, 1).toUpperCase();
+                String firstnameRestOfString = currentUser.getFirstname().substring(1).toLowerCase();
+                conversation.setName(firstnameFirstChar + firstnameRestOfString + " " + currentUser.getLastname().toUpperCase());
+            }
+        }&
+        if(userFind == false) {
+            return null;
+        }
+        return conversation;
     }
 }

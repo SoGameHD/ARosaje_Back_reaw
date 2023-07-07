@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import org.arosaje.entities.user.User;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,10 @@ public class Conversation {
     @OneToMany(mappedBy = "conversation", cascade = CascadeType.REMOVE)
     private Set<message> message;
 
+    {
+        this.user = new HashSet<>();
+        this.message = new HashSet<>();
+    }
     public Conversation() {
     }
 

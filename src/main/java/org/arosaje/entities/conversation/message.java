@@ -7,7 +7,7 @@ import org.arosaje.entities.user.User;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "CONVERSATION")
+@Table(name = "Message")
 public class message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,13 +28,16 @@ public class message {
     @JoinColumn(name="UTILISATEUR_ID")
     private User user;
 
+    {
+        this.date = LocalDateTime.now();
+    }
+
     public message() {
     }
 
     public message(Conversation conversation, String message, User user) {
         this.conversation = conversation;
         this.message = message;
-        this.date = LocalDateTime.now();
         this.user = user;
     }
 

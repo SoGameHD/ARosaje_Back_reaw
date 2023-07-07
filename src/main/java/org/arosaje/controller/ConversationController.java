@@ -4,10 +4,7 @@ import org.arosaje.entities.conversation.Conversation;
 import org.arosaje.entities.conversation.message;
 import org.arosaje.service.Conversation.ConversationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -26,6 +23,11 @@ public class ConversationController {
     @GetMapping("/conversation")
     public List<Conversation> getConversation(@RequestParam Integer user_id) {
         return conversationService.getConversationByUserId(user_id);
+    }
+
+    @GetMapping("/conversation/{id}")
+    public Conversation getConversationById(@PathVariable Integer id, @RequestParam Integer user_id) {
+        return conversationService.getConversationByConvId(id, user_id);
     }
 
     @PostMapping("/conversation")
