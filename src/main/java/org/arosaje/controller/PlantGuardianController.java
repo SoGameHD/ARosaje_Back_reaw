@@ -13,7 +13,7 @@ public class PlantGuardianController {
     @Autowired
     private PlantGuardianService plantGuardianService;
 
-    @PostMapping( "/plantGuard" )
+    @PostMapping( "/plant-guard" )
     public void addPlantGuard(@RequestParam Integer userId, @RequestParam Integer plantId, @RequestBody PlantGuardian plantGuardian) throws IOException {
         plantGuardianService.setGuardPlant(userId, plantId,plantGuardian);
     }
