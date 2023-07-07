@@ -83,7 +83,7 @@ public class ConversationService {
                 String firstnameRestOfString = currentUser.getFirstname().substring(1).toLowerCase();
                 conversation.setName(firstnameFirstChar + firstnameRestOfString + " " + currentUser.getLastname().toUpperCase());
             }
-        }&
+        }
         if(userFind == false) {
             return null;
         }
