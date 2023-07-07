@@ -36,7 +36,7 @@ public class PlantController {
         pictureService.storePlantPictures(createdPlantId, ownerId, file);
     }
 
-    @PostMapping( "/plantGuardian" )
+    @PostMapping( "/plant-guardian" )
     public void addPlantGuardian(@RequestParam Integer guardId, @RequestParam Integer plantId) {
         plantService.setPlantGuardian(guardId,plantId);
     }
@@ -53,7 +53,7 @@ public class PlantController {
         return plantService.findAll();
     }
 
-    @GetMapping( "/getPlantsByGuard" )
+    @GetMapping( "/plants-by-guard" )
     public List<Plant> getPlantsByGuard(@RequestParam(name="guard") boolean guard, @RequestParam(name="ownerId") Integer ownerId) {
         List<Plant> plants = plantRepository.findAllByGuard(guard);
         List<Plant> newPlants = new ArrayList<>();

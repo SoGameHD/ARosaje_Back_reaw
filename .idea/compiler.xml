@@ -2,17 +2,24 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ARosaje_Back_reaw" />
         <module name="ARosaje_back_reaw" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="openapi-java-client" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ARosaje_Back_reaw" options="-parameters" />
       <module name="ARosaje_back_reaw" options="-parameters" />
+      <module name="openapi-java-client" options="-Xlint:all -J-Xss4m" />
     </option>
   </component>
 </project>
