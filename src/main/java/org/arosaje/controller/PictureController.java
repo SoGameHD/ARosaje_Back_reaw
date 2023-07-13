@@ -40,7 +40,6 @@ public class PictureController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
         headers.setContentLength(pictureBytes.length);
-        System.out.println(picturesService.getPicture(plantId,pictureId).toString());
         return new ResponseEntity<byte[]>(pictureBytes, headers, HttpStatus.OK);
     }
 
