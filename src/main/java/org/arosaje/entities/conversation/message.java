@@ -2,6 +2,7 @@ package org.arosaje.entities.conversation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.arosaje.CryptoUtils.CryptoUtils;
 import org.arosaje.entities.user.User;
 
 import java.time.LocalDateTime;
@@ -35,9 +36,9 @@ public class message {
     public message() {
     }
 
-    public message(Conversation conversation, String message, User user) {
+    public message(Conversation conversation, String message, User user) throws Exception {
         this.conversation = conversation;
-        this.message = message;
+        this.message = CryptoUtils.encrypt(message);
         this.user = user;
     }
 
@@ -57,12 +58,13 @@ public class message {
         this.conversation = conversation;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMessage() throws Exception {
+        return CryptoUtils.decrypt(message);
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessage(String message) throws Exception {
+
+        this.message = CryptoUtils.encrypt(message);
     }
 
     public LocalDateTime getDate() {

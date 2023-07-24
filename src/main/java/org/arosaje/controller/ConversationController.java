@@ -31,12 +31,12 @@ public class ConversationController {
     }
 
     @PostMapping("/conversation")
-    public void addConversation(@RequestParam(name="name") String name, @RequestParam(name = "sender") Integer sender, @RequestParam(name="recept") Integer recept,  @RequestParam(name="content") String content) {
+    public void addConversation(@RequestParam(name="name") String name, @RequestParam(name = "sender") Integer sender, @RequestParam(name="recept") Integer recept,  @RequestParam(name="content") String content) throws Exception {
         conversationService.addConversation(name, sender, recept, content);
     }
 
     @PostMapping("/message")
-    public void addMessage(@RequestParam(name="conv") Integer conv_id, @RequestParam(name = "user") Integer user_id, @RequestParam(name="content") String content) {
+    public void addMessage(@RequestParam(name="conv") Integer conv_id, @RequestParam(name = "user") Integer user_id, @RequestParam(name="content") String content) throws Exception {
         conversationService.addMessage(conv_id, user_id, content);
     }
 }

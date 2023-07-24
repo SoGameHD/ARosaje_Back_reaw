@@ -26,14 +26,14 @@ public class ConversationService {
     @Autowired
     UserRepository userRepository;
 
-    public void addMessage(Integer conv_id, Integer user_id, String contenu) {
+    public void addMessage(Integer conv_id, Integer user_id, String contenu) throws Exception {
         Conversation conversation = conversationRepository.findById(conv_id).orElse(null);
         User user = userRepository.findById(user_id).orElse(null);
         message msg = new message(conversation, contenu, user);
         messageRepository.save(msg);
     }
 
-    public void addConversation(String name, Integer sender, Integer recept, String contenu) {
+    public void addConversation(String name, Integer sender, Integer recept, String contenu) throws Exception {
         if(sender == recept) {
             System.exit(1);
         }
