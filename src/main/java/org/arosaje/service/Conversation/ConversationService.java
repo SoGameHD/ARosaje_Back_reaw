@@ -35,7 +35,7 @@ public class ConversationService {
 
     public void addConversation(String name, Integer sender, Integer recept, String contenu) throws Exception {
         if(sender == recept) {
-            System.exit(1);
+            return;
         }
 
         User senderUser = userRepository.findById(sender).orElse(null);
@@ -44,9 +44,9 @@ public class ConversationService {
 
         for(Conversation currentConversation : conversations) {
             Set<User> users = currentConversation.getUser();
-            if(users.contains(senderUser)){
+            if(users.contains(senderUser) && users.contains(receptUser) ){
                 addMessage(currentConversation.getId(), sender, contenu);
-                System.exit(1);
+                return;
             }
         }
         
