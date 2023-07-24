@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ConversationService {
@@ -33,9 +34,22 @@ public class ConversationService {
     }
 
     public void addConversation(String name, Integer sender, Integer recept, String contenu) {
+        if(sender == recept) {
+            System.exit(1);
+        }
+
         User senderUser = userRepository.findById(sender).orElse(null);
         User receptUser = userRepository.findById(recept).orElse(null);
+        List<Conversation> conversations = conversationRepository.findAllByUser(senderUser);
 
+        for(Conversation currentConversation : conversations) {
+            Set<User> users = currentConversation.getUser();
+            if(users.contains(senderUser)){
+                addMessage(currentConversation.getId(), sender, contenu);
+                System.exit(1);
+            }
+        }
+        
         Conversation conversation = new Conversation(name);
         conversation.getUser().add(senderUser);
         conversation.getUser().add(receptUser);
