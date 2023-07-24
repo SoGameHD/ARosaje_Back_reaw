@@ -16,16 +16,24 @@ public class CryptoUtils {
         Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
         byte[] encryptedBytes = cipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
-        return Base64.getEncoder().encodeToString(encryptedBytes);
+        return Base64.getEncoder().encodeToString(encryptedBytes).replaceAll("\\s+", "");
     }
 
     public static String decrypt(String encryptedMessage) throws Exception {
-        byte[] decodedKey = Base64.getDecoder().decode(AES_KEY);
-        SecretKeySpec secretKeySpec = new SecretKeySpec(decodedKey, AES_ALGORITHM);
-        Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
-        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
-        byte[] decodedBytes = Base64.getDecoder().decode(encryptedMessage);
-        byte[] decryptedBytes = cipher.doFinal(decodedBytes);
-        return new String(decryptedBytes, StandardCharsets.UTF_8);
+        try {
+            byte[] decodedKey = Base64.getDecoder().decode(AES_KEY);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(decodedKey, AES_ALGORITHM);
+            Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+
+            byte[] decodedBytes = Base64.getDecoder().decode(encryptedMessage);
+            byte[] decryptedBytes = cipher.doFinal(decodedBytes);
+
+            return new String(decryptedBytes, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            // Gérer les exceptions liées au déchiffrement ici
+            e.printStackTrace();
+            throw new Exception("Erreur lors du déchiffrement");
+        }
     }
 }
