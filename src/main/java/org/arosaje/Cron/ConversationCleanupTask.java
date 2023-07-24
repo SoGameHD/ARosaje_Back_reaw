@@ -36,7 +36,7 @@ public class ConversationCleanupTask {
 
     private void cleanupConversations() {
         System.out.println("CRON : START CONVERSATION CLEANUP TASK");
-        LocalDateTime limitDate = LocalDateTime.now();
+        LocalDateTime limitDate = LocalDateTime.now().minusMonths(6);
 
         TransactionStatus transactionStatus = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
